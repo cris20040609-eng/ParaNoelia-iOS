@@ -8,6 +8,7 @@ workflows:
       vars:
         APP_SCHEME: App
         APP_PROJECT_PATH: ios/App/App.xcodeproj
+        DEVELOPMENT_TEAM: ""
     scripts:
       - name: Install dependencies
         script: |
@@ -20,9 +21,32 @@ workflows:
       - name: Sync Capacitor iOS
         script: |
           npx cap sync ios
-      - name: Build iOS app
+      - name: Build iOS archive
         script: |
+          if [ -z "$DEVELOPMENT_TEAM" ]; then
+            echo "ERROR: DEVELOPMENT_TEAM is not set";
+            exit 1;
+          fi
           cd ios/App
-          xcodebuild -project App.xcodeproj -scheme "$APP_SCHEME" -configuration Release -sdk iphoneos clean build
+          cat > exportOptions.plist <<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>compileBitcode</key>
+  <false/>
+  <key>method</key>
+  <string>development</string>
+  <key>signingStyle</key>
+  <string>automatic</string>
+  <key>teamID</key>
+  <string>${DEVELOPMENT_TEAM}</string>
+  <key>thinning</key>
+  <string>&lt;none&gt;</string>
+</dict>
+</plist>
+EOF
+          xcodebuild -project App.xcodeproj -scheme "$APP_SCHEME" -configuration Release archive -archivePath "$PWD/build/App.xcarchive"
+          xcodebuild -exportArchive -archivePath "$PWD/build/App.xcarchive" -exportOptionsPlist exportOptions.plist -exportPath "$PWD/build"
     artifact_paths:
-      - ios/App/build/Build/Products/Release-iphoneos/*.app
+      - ios/App/build/*.ipa

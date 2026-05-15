@@ -1,0 +1,28 @@
+workflows:
+  ios_build:
+    name: Build iOS app
+    environment:
+      node: 20.8.0
+      xcode: latest
+      cocoapods: default
+      vars:
+        APP_SCHEME: App
+        APP_PROJECT_PATH: ios/App/App.xcodeproj
+    scripts:
+      - name: Install dependencies
+        script: |
+          corepack enable
+          corepack prepare pnpm@10.4.1 --activate
+          pnpm install
+      - name: Build web assets
+        script: |
+          pnpm run build
+      - name: Sync Capacitor iOS
+        script: |
+          npx cap sync ios
+      - name: Build iOS app
+        script: |
+          cd ios/App
+          xcodebuild -project App.xcodeproj -scheme "$APP_SCHEME" -configuration Release -sdk iphoneos clean build
+    artifact_paths:
+      - ios/App/build/Build/Products/Release-iphoneos/*.app

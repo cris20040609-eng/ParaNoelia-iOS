@@ -1,0 +1,39 @@
+{
+  "name": "ParaNoelia",
+  "displayName": "ParaNoelia",
+  "expo": {
+    "name": "ParaNoelia",
+    "slug": "paranoelia",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./public/icon.png",
+    "userInterfaceStyle": "light",
+    "plugins": [
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "useFrameworks": "static"
+          }
+        }
+      ]
+    ],
+    "ios": {
+      "supportsTabletMode": true,
+      "bundleIdentifier": "com.paranoelia.app",
+      "buildNumber": "1"
+    },
+    "android": {
+      "versionCode": 1,
+      "package": "com.paranoelia.app"
+    },
+    "web": {
+      "favicon": "./public/favicon.ico"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "01b39ee8-36cc-460b-a73b-a582121dd63b"
+      }
+    }
+  }
+}

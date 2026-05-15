@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Gradient definition would go here if supported -->
+    
+    <!-- Heart shape - main gradient from pink to red -->
+    <path
+        android:fillColor="#FF1B6B"
+        android:pathData="M54,95 C18,64 8,40 8,28 C8,12 20,2 34,2 C45,2 54,12 54,24 C54,12 63,2 74,2 C88,2 100,12 100,28 C100,40 90,64 54,95 Z" />
+    
+    <!-- Heart highlight overlay - lighter pink for depth -->
+    <path
+        android:fillColor="#FF4B8F"
+        android:pathData="M35,25 C35,15 42,8 50,8 C55,8 60,13 62,20 C60,14 55,10 50,10 C44,10 38,14 38,22 Z" />
+
+    <!-- Lock base body - rounded rectangle with gradient effect -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:strokeColor="#D41F5E"
+        android:strokeWidth="3"
+        android:pathData="M36,48 L72,48 A10,10 0 0 1 82,58 L82,76 A10,10 0 0 1 72,86 L36,86 A10,10 0 0 1 26,76 L26,58 A10,10 0 0 1 36,48 Z" />
+
+    <!-- Lock shackle - elegant curved bar -->
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeColor="#D41F5E"
+        android:strokeWidth="5"
+        android:strokeLineCap="round"
+        android:pathData="M42,56 Q42,40 54,40 Q66,40 66,56" />
+
+    <!-- Keyhole circle with shadow effect -->
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeColor="#D41F5E"
+        android:strokeWidth="4"
+        android:pathData="M49,62 Q49,67 54,67 Q59,67 59,62 Q59,57 54,57 Q49,57 49,62 Z" />
+    
+    <!-- Keyhole stem -->
+    <path
+        android:fillColor="#D41F5E"
+        android:strokeColor="#D41F5E"
+        android:strokeWidth="2.5"
+        android:strokeLineCap="round"
+        android:pathData="M54,72 L54,80" />
+
+    <!-- Shine effect on lock - subtle white highlight -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M40,50 Q42,52 44,52 Q42,51 40,50 Z" 
+        android:alpha="0.4" />
+
+    <!-- Secondary shine -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M48,85 Q50,87 52,87 Q50,86 48,85 Z"
+        android:alpha="0.3" />
+</vector>
